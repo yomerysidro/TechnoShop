@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:insert = "~{admin/template_admin::head_admin}"></head>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <head th:insert = "~{admin/templates_admin::head_admin}"></head>
+    <link th:href="@{/css/inventory.css}" rel="stylesheet">
 
     <body>
 
         <!-- Navigation -->
-        <div th:insert = "~{admin/template_admin::header_admin}"></div>
+        <div th:insert = "~{admin/templates_admin::header_admin}"></div>
 
         <!-- Page Content -->
         <div class="container">
-
-            <h2>Añadir</h2>
+            <h2 class="title">Añadir Stock</h2>
             <form class="form-horizontal" th:action="@{/admin/products/stock/save-unit-product}" method="post">
                 <input type="hidden" name="idproduct" th:value="${idproduct}">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="unitIn">Cantidad:</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="form-control" id="entradas"
-                               name="entradas" placeholder="Ingrese la cantidad del producto"
-                               required autocomplete="off">
-                    </div>
+                    <label class="control-label" for="unitIn">Cantidad:</label>
+                    <input type="number" class="form-control" id="entradas" name="entradas" placeholder="Ingrese la cantidad del producto" required autocomplete="off">
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-2">
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-saved"></span> Guardar
-                        </button>
-                    </div>
+                    <button type="submit">
+                        Guardar
+                    </button>
                 </div>
-
             </form>
-
         </div>
         <!-- /.container -->
 

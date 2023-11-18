@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.page-content {
+    max-width: 800px;
+    margin: auto;
+    padding: 0 20px; /* Añade un relleno a los lados para mejorar la legibilidad en pantallas pequeñas */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.custom-link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+header {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: transparent;
+    color: #007bff;
+}
+
+tbody tr:hover {
+    background-color: transparent;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .page-content {
+        padding: 0 10px; /* Reduce el relleno en pantallas más pequeñas */
+    }
+
+    a {
+        display: block;
+        margin-bottom: 10px;
+    }
+}

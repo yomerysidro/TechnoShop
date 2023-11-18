@@ -23,6 +23,10 @@ public class AdminController {
         this.productService = productService;
     }
      @GetMapping
+     public String Template(){
+         return"admin/templates_admin";
+     }
+     @GetMapping("/products")
     public String home(Model model){
         model.addAttribute("products", productService.getProducts());
         return "admin/home_admin";

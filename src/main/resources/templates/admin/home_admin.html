@@ -4,27 +4,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:insert ="~{admin/template_admin::head_admin}"></head>
-    <body>
-        <div th:insert ="~{admin/template_admin::header_admin}"></div>
-        <div class="container">
-            <ul style="width: fit-content; margin-left: auto; margin-top: 20px;">
-                <a class="btn btn-primary"  th:href="@{/admin/products/create}"> Crear producto </a>
+    <head th:insert ="~{admin/templates_admin::head_admin}">
 
+    </head>
+    <link th:href="@{/css/homeProduct.css}" rel="stylesheet">
+    <body>
+        <div th:insert ="~{admin/templates_admin::header_admin}"></div>
+        <div class="page-content">
+            <ul>
+                <a class="custom-link" th:href="@{/admin/products/create}">Crear producto</a>
             </ul>
-            <header class="jumbotron my-4">
-                <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 
+
+            <header>
+                <h1>Bienvenido a tu tienda en línea!!!</h1>
             </header>
 
-            <table class="table">
+            <table>
                 <thead>
                     <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Invetario</th>
-                        <th scope="col">Eliminar</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Editar</th>
+                        <th>Inventario</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,17 +35,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${producto.name}"></td>
                         <td th:text="${producto.description}"></td>
                         <td th:text="${producto.price}"></td>
-                        <td> <a class="btn btn-warning" th:href="@{/admin/products/edit/{id} (id = ${producto.id}) }">Editar</a></td>
-                        <td> <a class="btn btn-danger"th:href="@{/admin/products/delete/{id} (id = ${producto.id}) }">Eliminar</a></td>
-                        <td> <a class="btn btn-primary" th:href="@{/admin/products/stock/{id} (id = ${producto.id}) }">Inventario</a></td>
-
+                        <td><a class="custom-link btn-warning" th:href="@{/admin/products/edit/{id} (id = ${producto.id}) }">Editar</a></td>
+                        <td><a class="custom-link btn-primary" th:href="@{/admin/products/stock/{id} (id = ${producto.id}) }">Inventario</a></td>
+                        <td><a class="custom-link btn-danger" th:href="@{/admin/products/delete/{id} (id = ${producto.id}) }">Eliminar</a></td>
                     </tr>
                 </tbody>
-
             </table>
-
-
         </div>
+
 
     </body>
     <div class="footer" th:insert ="~{admin/template_admin::footer_admin}"></div>
