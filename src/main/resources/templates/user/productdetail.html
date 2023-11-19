@@ -6,7 +6,7 @@
         <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
         <div th:insert ="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
         <!-- Page Content -->
-        <div class="container text-center mt-5">
+        <div class="container text-center"  style="margin-top:100px;">
             <!-- Blog Post -->
             <div class="card mb-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background: #fff; color: #333; max-width: 800px;margin-top:60px auto; ">
                 <div class="card-body">
@@ -32,8 +32,8 @@
                                         <p th:text="'Descripción: '+ ${product.description}"></p>
                                     </li>
                                     <li class="list-group-item"><h6>
-                                            Cantidad: <input type="number" id="quantity" name="quantity" autocomplete="off"
-                                                             min="1" max="5" value="1">
+                                            Cantidad: <input type="number" id="quantity" name="quantity" autocomplete="off" min="1" value="1">
+   
                                         </h6></li>
                                 </ul>
                                 <div class="text-end mt-3">

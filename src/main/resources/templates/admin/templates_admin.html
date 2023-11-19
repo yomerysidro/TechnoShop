@@ -86,14 +86,14 @@
                     <div class="single-card">
                         <div>
                             <span>Usuarios</span>
-                            <h2>40,000</h2>
+                            <h2 th:text="${userCount}">0</h2>
                         </div>
                         <i class="uil uil-users-alt"></i>
                     </div>
                     <div class="single-card">
                         <div>
                             <span>Ordenes</span>
-                            <h2>215</h2>
+                            <h2 th:text="${orderCount}">0</h2>
                         </div>
                         <i class="uil uil-shopping-bag"></i>
                     </div>
@@ -112,8 +112,6 @@
                         <i class="uil uil-comments"></i>
                     </div>
                 </div>
-
-
                 <div class="wrapper flex">
                     <div class="projects">
                         <div class="card-header flex">

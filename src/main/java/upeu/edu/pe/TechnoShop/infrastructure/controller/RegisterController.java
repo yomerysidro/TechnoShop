@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,28 +24,36 @@ import upeu.edu.pe.TechnoShop.infrastructure.dto.UserDto;
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
-    private final RegistrationService registrationService;      
-    private final Logger log = LoggerFactory.getLogger(RegisterController.class);
 
-    
+    private final RegistrationService registrationService;
+    private final Logger log = LoggerFactory.getLogger(RegisterController.class);
 
     public RegisterController(RegistrationService registrationService) {
         this.registrationService = registrationService;
     }
+
     @GetMapping
-    public String register(UserDto userDto){
+    public String register(UserDto userDto, Model model) {
+        long userCount = registrationService.getUserCount();
+        System.out.println("User Count: " + userCount);
+        model.addAttribute("userCount", userCount);
+        // Imprime el contenido del modelo
+        model.asMap().forEach((key, value) -> System.out.println(key + ": " + value));
+
         return "register";
     }
-    
-     @PostMapping
-    public String registerUser(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+    @PostMapping
+    public String registerUser(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 //        user.setDateCreated(LocalDateTime.now());
 //        user.setUserType(UserType.USER);
 //        user.setUsername(user.getEmail());
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(
-                    e->{ log.info( "Error {}", e.getDefaultMessage() ); }
+                    e -> {
+                        log.info("Error {}", e.getDefaultMessage());
+                    }
             );
             return "register";
         }
@@ -52,6 +61,5 @@ public class RegisterController {
         redirectAttributes.addFlashAttribute("success", "Usuario creado correctamente");
         return "redirect:/login";
     }
-    
-    
+
 }

@@ -26,6 +26,8 @@ import upeu.edu.pe.TechnoShop.app.service.StockService;
 import upeu.edu.pe.TechnoShop.app.service.UploadFile;
 import upeu.edu.pe.TechnoShop.app.service.UserServices;
 import upeu.edu.pe.TechnoShop.app.service.ValidateStock;
+import upeu.edu.pe.TechnoShop.infrastructure.adapter.OrderProductCrudRepository;
+import upeu.edu.pe.TechnoShop.infrastructure.adapter.UserCrudRepository;
 
 /**
  *
@@ -33,56 +35,61 @@ import upeu.edu.pe.TechnoShop.app.service.ValidateStock;
  */
 @Configuration
 public class BeanConfiguration {
-    
-   @Bean
-   public ProductService productService(ProductRepository productRepository, UploadFile uploadFile){
-      return new ProductService(productRepository,uploadFile);
-   }
-   
-   @Bean
-   public StockService stockService(StockRepository stockRepository){
-      return new StockService(stockRepository);
-   }
-   
-   @Bean
-   public UploadFile uploadFile(){
-       return new UploadFile();
-   }
+
+    @Bean
+    public ProductService productService(ProductRepository productRepository, UploadFile uploadFile) {
+        return new ProductService(productRepository, uploadFile);
+    }
+
+    @Bean
+    public StockService stockService(StockRepository stockRepository) {
+        return new StockService(stockRepository);
+    }
+
+    @Bean
+    public UploadFile uploadFile() {
+        return new UploadFile();
+    }
+
     @Bean
     public ValidateStock validateStock(StockService stockService) {
         return new ValidateStock(stockService);
     }
+
     @Bean
-    public OrderService orderService(OrderRepository orderRepository){
-        return new OrderService(orderRepository);
+    public OrderService orderService(OrderRepository orderRepository, OrderProductCrudRepository orderProductCrudRepository) {
+        return new OrderService(orderRepository, orderProductCrudRepository);
     }
 
     @Bean
-    public OrderProductService orderProductService(OrderProductRepository orderProductRepository){
-        return  new OrderProductService(orderProductRepository);
+    public OrderProductService orderProductService(OrderProductRepository orderProductRepository) {
+        return new OrderProductService(orderProductRepository);
     }
-    
-     @Bean
-    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public  CartService cartService(){
-        return  new CartService();
-    }
-     @Bean
-    public UserServices userService(UserRepository userRepository){
-        return  new UserServices(userRepository);
-    }
+
     @Bean
-    public LoginService loginService(UserServices userService){
+    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public CartService cartService() {
+        return new CartService();
+    }
+
+    @Bean
+    public UserServices userService(UserRepository userRepository) {
+        return new UserServices(userRepository);
+    }
+
+    @Bean
+    public LoginService loginService(UserServices userService) {
         return new LoginService(userService);
     }
+
     @Bean
-    public LogoutService logoutService(){
-        return  new LogoutService();
-    } 
-    @Bean
-    public RegistrationService registrationService(UserServices userService, PasswordEncoder passwordEncoder){
-        return  new RegistrationService(userService, passwordEncoder);
+    public LogoutService logoutService() {
+        return new LogoutService();
     }
-    
-    
+
+    @Bean
+    public RegistrationService registrationService(UserServices userService, UserCrudRepository userCrudRepository, PasswordEncoder passwordEncoder) {
+        return new RegistrationService(userService, userCrudRepository, passwordEncoder);
+    }
+
 }

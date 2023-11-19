@@ -14,7 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div th:fragment ="header">
             <nav class="navbar navbar-expand-lg fixed-top" style=" background:#07838b;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" th:href="@{/home}" style="color: white;">Home</a>
+                    <a class="navbar-brand" th:href="@{/home}" style="color: white;">TechnoShop</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -42,7 +42,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div th:fragment ="userlogger">
             <nav class="navbar navbar-expand-lg fixed-top"style=" background: #07838b;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" th:href="@{/home}"style="color: white;">Home</a>
+                    <a class="navbar-brand" th:href="@{/home}"style="color: white;">TechnoShop</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon" style="color: white;"></span>
                     </button>
@@ -76,17 +76,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p class="m-0 text-center text-white"> TechnoShop Copyright &copy; Yys 2023</p> 
                 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
             </div>
-
+            <style>
+                .footer {
+                    bottom: 0;
+                    width: 100%;
+                    height: 40px;
+                    background: #07838b;
+                    color: white;
+                    text-align: center;                
+                    position: relative; /* Elimina esta línea si no deseas la posición relativa */                  
+                }
+            </style>
         </footer>
-        <style>
-
-            .footer{
-                
-                bottom:0px;
-                height: 60px;
-                width: 100%;
-            }
-
-        </style>
     </div>
 </html>

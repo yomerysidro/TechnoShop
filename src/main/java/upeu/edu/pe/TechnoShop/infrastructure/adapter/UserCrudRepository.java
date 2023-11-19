@@ -14,5 +14,6 @@ import upeu.edu.pe.TechnoShop.infrastructure.entity.UserEntity;
  */
 public interface UserCrudRepository extends CrudRepository<UserEntity, Integer>{
         Optional<UserEntity> findByEmail(String email);
+        
 
 }
