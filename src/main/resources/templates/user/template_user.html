@@ -5,77 +5,88 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:fragment ="head">
-        <title>Ecommerce</title>
+        <title>TechnoShop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     </head>
     <body>
         <div th:fragment ="header">
-            <nav class="navbar navbar-expand-lg bg-success ">
-            <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/home}">Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav" style="width: fit-content; margin-left: auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                OPCIONES
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" th:href="@{/user/cart/get-cart}">Carrito</a></li>
-                                <li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-light" type="submit">Search</button>
-                    </form>
+            <nav class="navbar navbar-expand-lg fixed-top" style=" background:#07838b;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" th:href="@{/home}" style="color: white;">Home</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav" style="width: fit-content; margin-left: auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"style="color: white;">
+                                    OPCIONES
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" th:href="@{/user/cart/get-cart}">Carrito</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-light" type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         </div>
-        
+
         <div th:fragment ="userlogger">
-            <nav class="navbar navbar-expand-lg bg-success ">
-            <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/home}">Home</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav" style="width: fit-content; margin-left: auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" 
-                               role="button" data-bs-toggle="dropdown" 
-                               aria-expanded="false" th:text="${nombre}">
-                                
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" th:href="@{/user/cart/get-cart}">Carrito</a></li>
-                                <li><a class="dropdown-item" href="#">Mis productos</a></li>
-                                <li><a class="dropdown-item" th:href="@{/logout}">salir</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-light" type="submit">Search</button>
-                    </form>
+            <nav class="navbar navbar-expand-lg fixed-top"style=" background: #07838b;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" th:href="@{/home}"style="color: white;">Home</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" style="color: white;"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav" style="width: fit-content; margin-left: auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" 
+                                   role="button" data-bs-toggle="dropdown" 
+                                   aria-expanded="false" th:text="${nombre}" style="color: white;">
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" th:href="@{/user/cart/get-cart}">Carrito</a></li>
+                                    <li><a class="dropdown-item" href="#">Mis productos</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/logout}">salir</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-light" type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         </div>
     </body>
     <div th:fragment ="footer">
-        <footer class="footer py-5 bg-success">
+        <footer class="footer py-5"style=" background: #07838b;">
             <div class="container">
-                <p class="m-0 text-center text-white"> Curso LP Copyright &copy; Jast 2023</p> 
+                <p class="m-0 text-center text-white"> TechnoShop Copyright &copy; Yys 2023</p> 
                 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
             </div>
+
         </footer>
+        <style>
+
+            .footer{
+                
+                bottom:0px;
+                height: 60px;
+                width: 100%;
+            }
+
+        </style>
     </div>
 </html>
