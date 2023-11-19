@@ -6,9 +6,9 @@
         <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
         <div th:insert ="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
         <!-- Page Content -->
-        <div class="container text-center"  style="margin-top:100px;">
+        <div class="container  mb-4 d-flex text-center justify-content-center align-items-center "  style="margin-top:100px;  ">
             <!-- Blog Post -->
-            <div class="card mb-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background: #fff; color: #333; max-width: 800px;margin-top:60px auto; ">
+            <div class="card mb-4 " style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background: #fff; color: #333; max-width: 800px; ">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6">
@@ -33,12 +33,13 @@
                                     </li>
                                     <li class="list-group-item"><h6>
                                             Cantidad: <input type="number" id="quantity" name="quantity" autocomplete="off" min="1" value="1">
-   
+
                                         </h6></li>
                                 </ul>
                                 <div class="text-end mt-3">
-                                    <button type="submit" class="btn btn-primary" style="background-color: #007bff; border-color: #007bff;">Añadir al carrito</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #004080; border-color: #004080;">Añadir al carrito</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>

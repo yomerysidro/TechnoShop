@@ -4,18 +4,66 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:insert ="~{user/template_user::head}">
-        <link th:href="@{/css/homeUser.css}" rel="stylesheet">
-    </head>
-    <body  >
+    <head th:insert ="~{user/template_user::head}"> </head>
+
+    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <body >
         <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
         <div th:insert ="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
-        <div class="container" style="margin-top:60px;">
-            <header class="jumbotron my-4">
-                <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 
-            </header>
-            <div class="container mt-5 text-center">
-                <h2 class="display-3" style="color: black; font-size: 3rem;">Nuestros Productos</h2>
+        <div class="contenedor">
+            <div id="slide">
+                <div class="item" style="background-image: url('/images/shopping.jpg' );">
+                    <div class="content">
+                        <div class="name">TECHNOSHOP</div>
+                        <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
+                        <button>Comprar</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url('/images/pago.jpg');">
+                    <div class="content">
+                        <div class="name">TECHNOSHOP</div>
+                        <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
+                        <button>Comprar</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url('/images/shop.jpeg');">
+                    <div class="content">
+                        <div class="name">TECHNOSHOP</div>
+                        <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
+                        <button>Comprar</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url('/images/ecommerce.jpg');">
+                    <div class="content">
+                        <div class="name">TECHNOSHOP</div>
+                        <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
+                        <button>Comprar</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url('/images/AirpodsHome.jpg');">
+                    <div class="content">
+                        <div class="name">TECHNOSHOP</div>
+                        <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
+                        <button>Comprar</button>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url('/images/aipods.jpg');">
+                    <div class="content">
+                        <div class="name">TECHNOSHOP</div>
+                        <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
+                        <button>Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+                <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container text-center">
+                <h2 class="display-3" style=" font-size: 2.5rem; font-weight: bold; border-bottom: 2px solid;">Nuestros Productos</h2>
             </div>
 
             <div class="row text-center">
@@ -26,9 +74,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <p class="card-text"th:text="${product.name}"> Nombre del producto</p>  
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-success" th:href="@{/home/product-detail/{id} (id=${product.id})}">Ver Producto</a>     
-
+                            <a class="btn btn-success" style="background-color: #1d9bd1; border-color: #1d9bd1;" th:href="@{/home/product-detail/{id} (id=${product.id})}">Ver Producto</a>
                         </div>
+
+
                     </div> 
                 </div>
             </div>
@@ -36,7 +85,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         </div>
 
+        <script>
+            document.getElementById('next').onclick = function () {
+                let lists = document.querySelectorAll('.item');
+                document.getElementById('slide').appendChild(lists[0]);
+            }
+            document.getElementById('prev').onclick = function () {
+                let lists = document.querySelectorAll('.item');
+                document.getElementById('slide').prepend(lists[lists.length - 1]);
+            }
+        </script>
     </body>
     <div class="footer" th:insert ="~{user/template_user::footer}"></div>
+    <style>
+        .footer {
+            position: relative;
+
+        }
+    </style>
 </html>
 
