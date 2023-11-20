@@ -7,6 +7,9 @@ package upeu.edu.pe.TechnoShop.infrastructure.controller;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import upeu.edu.pe.TechnoShop.app.service.RegistrationService;
 import upeu.edu.pe.TechnoShop.infrastructure.dto.UserDto;
+import upeu.edu.pe.TechnoShop.infrastructure.entity.UserEntity;
 
 /**
  *
@@ -25,12 +29,17 @@ import upeu.edu.pe.TechnoShop.infrastructure.dto.UserDto;
 @RequestMapping("/register")
 public class RegisterController {
 
+    
+    private JavaMailSender javaMailSender;
     private final RegistrationService registrationService;
     private final Logger log = LoggerFactory.getLogger(RegisterController.class);
 
-    public RegisterController(RegistrationService registrationService) {
+    public RegisterController(JavaMailSender javaMailSender, RegistrationService registrationService) {
+        this.javaMailSender = javaMailSender;
         this.registrationService = registrationService;
     }
+
+   
 
     @GetMapping
     public String register(UserDto userDto, Model model) {
@@ -57,9 +66,20 @@ public class RegisterController {
             );
             return "register";
         }
-        registrationService.register(userDto.userDtoToUser());
-        redirectAttributes.addFlashAttribute("success", "Usuario creado correctamente");
+
+      UserEntity registeredUser = registrationService.register(userDto.userDtoToUser());
+        // Envía el correo de registro exitoso
+        enviarEmail(registeredUser.getEmail());
+        redirectAttributes.addFlashAttribute("success", "Usuario creado correctamente. Se ha enviado un correo de confirmación.");
         return "redirect:/login";
     }
 
+    private void enviarEmail(String userEmail) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userEmail);
+        mailMessage.setSubject("Registro Exitoso");
+        mailMessage.setText("¡Gracias por registrarte en TechnoShop! Tu cuenta ha sido creada exitosamente.");
+
+        javaMailSender.send(mailMessage);
+    }
 }

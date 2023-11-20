@@ -25,9 +25,10 @@ public class RegistrationService {
 
  
     
-    public void register(UserEntity user){
+    public UserEntity register(UserEntity user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userServices.createUser(user);
+        return user;
     }
         public long getUserCount() {
         return userCrudRepository.count();

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import upeu.edu.pe.TechnoShop.app.domain.ItemCart;
 import upeu.edu.pe.TechnoShop.app.service.CartService;
+import upeu.edu.pe.TechnoShop.app.service.EmailService;
 import upeu.edu.pe.TechnoShop.app.service.OrderProductService;
 import upeu.edu.pe.TechnoShop.app.service.OrderService;
 import upeu.edu.pe.TechnoShop.app.service.ProductService;
@@ -47,10 +48,11 @@ public class OrderController {
     private final Integer entradas = 0;
     private final StockService stockService;
     private final ValidateStock validateStock;
+    private final EmailService emailService;
 
     private final Logger log = LoggerFactory.getLogger(OrderController.class);
 
-    public OrderController(CartService cartService, UserServices userServices, OrderService orderService, ProductService productService, OrderProductService orderProductService, StockService stockService, ValidateStock validateStock) {
+    public OrderController(CartService cartService, UserServices userServices, OrderService orderService, ProductService productService, OrderProductService orderProductService, StockService stockService, ValidateStock validateStock, EmailService emailService) {
         this.cartService = cartService;
         this.userServices = userServices;
         this.orderService = orderService;
@@ -58,6 +60,7 @@ public class OrderController {
         this.orderProductService = orderProductService;
         this.stockService = stockService;
         this.validateStock = validateStock;
+        this.emailService = emailService;
     }
 
     @GetMapping("/sumary-order")
@@ -102,14 +105,14 @@ public class OrderController {
                     stockService.saveStock(validateStock.calculateBalance(stock));
                 }
         );
+       
 
-        cartService.removeAllItemCart();
         attributes.addFlashAttribute("id", httpSession.getAttribute("iduser").toString());
         attributes.addFlashAttribute("nombre", httpSession.getAttribute("name").toString());
         return "redirect:/home";
     }
-    //resumen de orden
 
+    //resumen de orden
     @GetMapping("/{orderId}")
     public String viewUserOrders(Model model, RedirectAttributes attributes, HttpSession httpSession) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
