@@ -23,22 +23,26 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 public class UserEntity {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
-  private String username;
-  private String firtName;
-  private String lastName;
-  private String email;
-  private String address;
-  private String cellphone;
-  private String password;
-  @Enumerated(EnumType.STRING)
-  private UserType userType;
-  
-  private LocalDateTime dateCreated;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String username;
+    private String firtName;
+    private String lastName;
+    private String email;
+    private String address;
+    private String cellphone;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
-  
-  
+    private LocalDateTime dateCreated;
+
+    //obteniendo el nombre y apellido del cliente de la orden
+    public String getFullName() {
+        // Lógica para obtener el nombre completo, por ejemplo:
+        return this.firtName + " " + this.lastName;
+    }
+
 }

@@ -10,9 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import upeu.edu.pe.TechnoShop.app.domain.ItemCart;
@@ -99,12 +102,25 @@ public class OrderController {
                     stockService.saveStock(validateStock.calculateBalance(stock));
                 }
         );
-        
 
         cartService.removeAllItemCart();
         attributes.addFlashAttribute("id", httpSession.getAttribute("iduser").toString());
         attributes.addFlashAttribute("nombre", httpSession.getAttribute("name").toString());
         return "redirect:/home";
     }
+    //resumen de orden
 
+    @GetMapping("/{orderId}")
+    public String viewUserOrders(Model model, RedirectAttributes attributes, HttpSession httpSession) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        UserEntity user = userServices.findByEmail(username);
+
+        Iterable<OrderEntity> userOrders = orderService.getOrdersByUser(user);
+
+        model.addAttribute("orders", userOrders);
+        attributes.addFlashAttribute("id", httpSession.getAttribute("iduser").toString());
+        attributes.addFlashAttribute("nombre", httpSession.getAttribute("name").toString());
+        return "user/MyOrders";
+    }
 }

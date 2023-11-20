@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head th:fragment ="head_admin">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" th:href="@{images/Logo.png}">
         <title>TechnoShop - Admin</title>
 
         <!-- iconscout cdn path -->
@@ -37,8 +38,10 @@
                     </li>
 
                     <li>
-                        <i class="uil uil-shopping-bag"></i>
-                        <span>Ordenes</span>
+                        <a th:href="@{/admin}">
+                            <i class="uil uil-shopping-bag"></i>
+                            <span>Ordenes</span>
+                        </a>
                     </li>
                     <li>
                         <i class="uil uil-users-alt"></i>
@@ -72,13 +75,14 @@
                     <input type="text" placeholder="Search Here...">
                 </div>
 
-                <div class="admin-box flex" >
-                    <img src="images/user.jpeg" width="30px" height="30px">
+                <div class="admin-box flex">
+                    <img th:src="@{/images/yomer.jpg}" width="30px" height="30px">
                     <div>
-                        <h4>Naseem Khan</h4>
+                        <h4 th:text="${useradmin}"></h4>
                         <small>Admin</small>
                     </div>
                 </div>
+
             </header>
 
             <main>
@@ -100,10 +104,11 @@
                     <div class="single-card">
                         <div>
                             <span>Ventas</span>
-                            <h2>$47k</h2>
+                            <h2 th:text="'S/.' + ${totalSales}">0</h2>
                         </div>
                         <i class="uil uil-dollar-alt"></i>
                     </div>
+
                     <div class="single-card">
                         <div>
                             <span>PENDING REQUESTS</span>
@@ -115,217 +120,80 @@
                 <div class="wrapper flex">
                     <div class="projects">
                         <div class="card-header flex">
-                            <h3>Recents Projects</h3>
-                            <button>See all <i class="uil uil-angle-right"></i></button>
+                            <h3>Lista de Ordenes</h3>
+                            <button>Ver todo<i class="uil uil-angle-right"></i></button>
+                        </div>
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha de creacion</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Utiliza Thymeleaf para iterar sobre la lista de pedidos -->
+                                <tr th:each="order : ${orders}">
+                                    <td th:text="${order.id}"></td>
+                                    <td th:text="${order.user.fullName}"></td>
+                                    <td th:text="${order.dateCreated != null} ? ${#temporals.format(order.dateCreated, 'dd/MM/yyyy')} : ''"></td>
+                                    <td th:text="${order.status}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Agrega esta sección a tu archivo HTML -->
+                    <div class="customers">
+                        <div class="card-header flex">
+                            <h3>Usuarios Registrados</h3>
+                            <button>Ver todo<i class="uil uil-angle-right"></i></button>
                         </div>
 
                         <table>
-                            <thead>
-                            <th>
-                            <tr>
-                                <td>Project Title</td>
-                                <td>Department</td>
-                                <td>Status</td>
-                            </tr>
-                            </th>
-                            </thead>
-
                             <tbody>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status review"></span>review
+                                <!-- Utiliza Thymeleaf para iterar sobre la lista de usuarios -->
+                                <tr th:each="user : ${registeredUsers}">
+                                    <td class="flex">
+                                        <!-- Aquí puedes mostrar la imagen del usuario si tienes esa información -->
+                                        <div>
+                                            <h5 th:text="${user.firtName + ' ' + user.lastName}"></h5>
+                                            <small th:text="${user.address}"></small>
+                                        </div>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status progress"></span>progress
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status pending"></span>pending
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status review"></span>review
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status progress"></span>progress
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status pending"></span>pending
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status review"></span>review
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status progress"></span>progress
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>UI/UX Designer</td>
-                                    <td>UI Team</td>
-                                    <td class="status-box">
-                                        <span class="status pending"></span>pending
+
+                                    <td>
+                                        <i class="uil uil-user-circle"></i>
+                                        <!-- Aquí puedes mostrar otras propiedades del usuario, como la fecha de registro, etc. -->
+                                        <i class="uil uil-calender"></i>
+                                        <i class="uil uil-phone-alt"></i>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="customers">
-                        <div class="card-header flex">
-                            <h3>New Customers</h3>
-                            <button>See all <i class="uil uil-angle-right"></i></button>
-                        </div>
 
-                        <table>
-
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                            <tr class="flex">
-                                <td class="flex">
-                                    <img src="images/user.jpeg" width="30px" height="30px" alt="">
-                                    <div>
-                                        <h5>Naseem Khan</h5>
-                                        <small>CEO Expert</small>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <i class="uil uil-user-circle"></i>
-                                    <i class="uil uil-calender"></i>
-                                    <i class="uil uil-phone-alt"></i>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
-            </main>
         </div>
 
-        <script>
-            let sideBar = document.getElementById('sidebar');
-            let menuIcon = document.getElementById('menu-icon');
-            let mainContent = document.getElementById('main-content');
+    </main>
 
-            menuIcon.onclick = () => {
-                sideBar.classList.toggle('toggleMenu');
-                mainContent.classList.toggle('toggleContent');
-            }
-        </script>
-    </body>
+
+</div>
+
+<script>
+    let sideBar = document.getElementById('sidebar');
+    let menuIcon = document.getElementById('menu-icon');
+    let mainContent = document.getElementById('main-content');
+
+    menuIcon.onclick = () => {
+        sideBar.classList.toggle('toggleMenu');
+        mainContent.classList.toggle('toggleContent');
+    }
+
+
+</script>
+</body>
 </html>
