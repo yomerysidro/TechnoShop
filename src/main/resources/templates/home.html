@@ -7,6 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <head th:insert ="~{user/template_user::head}"> </head>
 
     <link th:href="@{/css/home.css}" rel="stylesheet">
+    <link th:href="@{/images/Logo.png}" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <body >
         <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
@@ -17,42 +18,42 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="content">
                         <div class="name">TECHNOSHOP</div>
                         <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
-                        <button>Comprar</button>
+                        <a th:href="@{#Products}">Comprar</a>
                     </div>
                 </div>
                 <div class="item" style="background-image: url('/images/pago.jpg');">
                     <div class="content">
                         <div class="name">TECHNOSHOP</div>
                         <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
-                        <button>Comprar</button>
+                        <a th:href="@{#Products}">Comprar</a>
                     </div>
                 </div>
                 <div class="item" style="background-image: url('/images/shop.jpeg');">
                     <div class="content">
                         <div class="name">TECHNOSHOP</div>
                         <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
-                        <button>Comprar</button>
+                        <a th:href="@{#Products}">Comprar</a>
                     </div>
                 </div>
                 <div class="item" style="background-image: url('/images/ecommerce.jpg');">
                     <div class="content">
                         <div class="name">TECHNOSHOP</div>
                         <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
-                        <button>Comprar</button>
+                        <a th:href="@{#Products}">Comprar</a>
                     </div>
                 </div>
                 <div class="item" style="background-image: url('/images/AirpodsHome.jpg');">
                     <div class="content">
                         <div class="name">TECHNOSHOP</div>
                         <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
-                        <button>Comprar</button>
+                        <a th:href="@{#Products}">Comprar</a>
                     </div>
                 </div>
                 <div class="item" style="background-image: url('/images/aipods.jpg');">
                     <div class="content">
                         <div class="name">TECHNOSHOP</div>
                         <div class="des">¡La tecnología evoluciona, y tú también puedes hacerlo con nosotros!</div>
-                        <button>Comprar</button>
+                        <a th:href="@{#Products}">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +64,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
         <div class="container">
             <div class="container text-center">
-                <h2 class="display-3" style=" font-size: 2.5rem; font-weight: bold; border-bottom: 2px solid;">Nuestros Productos</h2>
+                <h2 class="display-3" id="Products" style=" font-size: 2.5rem; font-weight: bold; border-bottom: 2px solid;">Nuestros Productos</h2>
             </div>
 
             <div class="row text-center">
@@ -95,6 +96,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 document.getElementById('slide').prepend(lists[lists.length - 1]);
             }
         </script>
+       
+
     </body>
     <div class="footer" th:insert ="~{user/template_user::footer}"></div>
     <style>

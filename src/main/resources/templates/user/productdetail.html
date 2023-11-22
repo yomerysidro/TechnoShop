@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-    <head th:insert = "~{user/template_user::head}"></head>
+    <head th:insert = "~{user/template_user::head}">
+
+    </head>
+    <link rel="icon" type="image/x-icon" th:href="@{images/Logo.png}">
     <body >
         <!-- Navigation -->
         <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
@@ -18,7 +21,7 @@
                             </a>
                         </div>
                         <div class="col-lg-6">
-                            <form th:action="@{/user/cart/add-product}" method="POST">
+                            <form th:action="@{/user/cart/add-product}" method="POST" >
                                 <input type="hidden" th:value="${product.id}" name="idProduct">
                                 <input type="hidden" th:value="${product.name}" name="nameProduct">
                                 <input type="hidden" th:value="${product.price}" name="price">
@@ -48,6 +51,8 @@
         </div>
 
         <!-- /.container -->
+        <!-- Asegúrate de que estás incluyendo SweetAlert2 en tu página -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Footer -->
         <div th:insert="~{user/template_user::footer}"></div>

@@ -15,8 +15,10 @@ import upeu.edu.pe.TechnoShop.app.service.OrderService;
 import upeu.edu.pe.TechnoShop.app.service.ProductService;
 import upeu.edu.pe.TechnoShop.app.service.RegistrationService;
 import upeu.edu.pe.TechnoShop.app.service.UserServices;
+import upeu.edu.pe.TechnoShop.infrastructure.adapter.ProductCrudRepository;
 import upeu.edu.pe.TechnoShop.infrastructure.adapter.UserCrudRepository;
 import upeu.edu.pe.TechnoShop.infrastructure.entity.OrderEntity;
+import upeu.edu.pe.TechnoShop.infrastructure.entity.ProductEntity;
 import upeu.edu.pe.TechnoShop.infrastructure.entity.UserEntity;
 
 /**
@@ -32,16 +34,16 @@ public class AdminController {
     private final UserServices userService;
     private final OrderService orderService;
     private final UserCrudRepository userCrudRepository;
+    private final ProductCrudRepository productCrudRepository;
 
-    public AdminController(ProductService productService, RegistrationService registrationService, UserServices userService, OrderService orderService, UserCrudRepository userCrudRepository) {
+    public AdminController(ProductService productService, RegistrationService registrationService, UserServices userService, OrderService orderService, UserCrudRepository userCrudRepository, ProductCrudRepository productCrudRepository) {
         this.productService = productService;
         this.registrationService = registrationService;
         this.userService = userService;
         this.orderService = orderService;
         this.userCrudRepository = userCrudRepository;
+        this.productCrudRepository = productCrudRepository;
     }
-
-    
 
     @GetMapping
     public String Template(Model model) {
@@ -68,6 +70,10 @@ public class AdminController {
         // Obtener la lista de todos los usuarios registrados
         Iterable<UserEntity> registeredUsers = userCrudRepository.findAll();
         model.addAttribute("registeredUsers", registeredUsers);
+
+        // Obtener la cantidad total de productos registrados
+        long totalProducts = productCrudRepository.count();
+        model.addAttribute("totalProducts", totalProducts);
 
         return "admin/templates_admin";
     }

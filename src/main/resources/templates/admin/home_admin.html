@@ -37,7 +37,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${producto.price}"></td>
                         <td><a class="custom-link btn-warning" th:href="@{/admin/products/edit/{id} (id = ${producto.id}) }">Editar</a></td>
                         <td><a class="custom-link btn-primary" th:href="@{/admin/products/stock/{id} (id = ${producto.id}) }">Inventario</a></td>
-                        <td><a class="custom-link btn-danger" th:href="@{/admin/products/delete/{id} (id = ${producto.id}) }">Eliminar</a></td>
+                        <td><a class="custom-link btn-danger"
+                               th:href="@{/admin/products/delete/{id} (id = ${producto.id}) }" onclick="return removeItemConfirmation(event)">Eliminar</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -46,6 +47,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     </body>
     <div class="footer" th:insert ="~{admin/template_admin::footer_admin}"></div>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function removeItemConfirmation(event) {
+            event.preventDefault(); // Prevenir la acción predeterminada del enlace
+
+            Swal.fire({
+                title: '¿Elimar producto?',
+                text: '¿Seguro que desea elimnar el producto?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, quitar',
+                cancelButtonText: 'No, cancelar',
+                allowOutsideClick: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Producto eliminado',
+                        icon: 'success'
+                    }).then(() => {
+                        // Descomenta y ajusta la siguiente línea según tu implementación.
+                        window.location.href = event.target.getAttribute('href');
+                    });
+                }
+            });
+        }
+        /*]]>*/
+    </script>
+
 </html>
 <style>
     .body{

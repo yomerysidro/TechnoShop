@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
     <head th:insert = "~{user/template_user::head}"></head>
-
+<link rel="icon" type="image/x-icon" th:href="@{images/Logo.png}">
     <body>
 
         <!-- Navigation -->
@@ -31,7 +31,7 @@
                                         <td th:text="${item.price}">Precio</td>
                                         <td th:text="${item.quantity}">Cantidad</td>
                                         <td th:text="${item.getTotalPriceItem()}">Total</td>
-                                        <td><a th:href="@{/user/cart/delete-item-cart/{id} (id = ${item.idProduct})}" class="btn btn-danger">Quitar</a></td>
+                                        <td><a th:href="@{/user/cart/delete-item-cart/{id} (id = ${item.idProduct})}" onclick="return removeItemConfirmation(event)" class="btn btn-danger">Quitar</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -50,6 +50,34 @@
             </div>
         </div>
         <!-- /.container -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    function removeItemConfirmation(event) {
+        event.preventDefault(); // Prevenir la acción predeterminada del enlace
+
+        Swal.fire({
+            title: '¿Quitar producto?',
+            text: '¿Seguro que desea quitar el producto seleccionado del carrito?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, quitar',
+            cancelButtonText: 'No, cancelar',
+            allowOutsideClick: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Producto eliminado',
+                    icon: 'success'
+                }).then(() => {
+                    // Descomenta y ajusta la siguiente línea según tu implementación.
+                    window.location.href = event.target.getAttribute('href');
+                });
+            }
+        });
+    }
+    /*]]>*/
+</script>
 
         <!-- Footer -->
         <div th:insert="~{user/template_user::footer}"></div>

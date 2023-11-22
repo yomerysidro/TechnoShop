@@ -21,18 +21,16 @@
 
             <div class="sidebar-menu">
                 <ul>
-                    <li> 
-
-                        <i class="uil uil-dashboard"></i>
+                    <li>
                         <a th:href="@{/admin}">
+                            <i class="uil uil-dashboard"></i>
                             <span>Dashboard</span>                   
                         </a>
 
                     </li>
                     <li >
-
-                        <i class="uil uil-cube"></i>
                         <a th:href="@{/admin/products}">
+                            <i class="uil uil-cube"></i>
                             <span>productos</span>
                         </a>
                     </li>
@@ -44,17 +42,20 @@
                         </a>
                     </li>
                     <li>
-                        <i class="uil uil-users-alt"></i>
-                        <span>Usuarios</span>
+                        <a th:href="@{/admin}">
+                            <i class="uil uil-users-alt"></i>
+                            <span>Usuarios</span>
+                        </a>
                     </li>
                     <li>
-                        <i class="uil uil-user-circle"></i>
-                        <span>Cuenta</span>
+                        <a th:href="@{/admin}">
+                            <i class="uil uil-user-circle"></i>
+                            <span>Cuenta</span>
+                        </a>
                     </li>
                     <li>
-
-                        <i class="uil uil-signin"></i>
                         <a th:href="@{/home}" class="nav-link">
+                            <i class="uil uil-signin"></i>
                             <span>Salir</span>
                         </a>
                     </li>
@@ -103,10 +104,10 @@
                     </div>
                     <div class="single-card">
                         <div>
-                            <span>Ventas</span>
-                            <h2 th:text="'S/.' + ${totalSales}">0</h2>
+                            <span>Total de Productos</span>
+                            <h2 th:text="${totalProducts}">0</h2>
                         </div>
-                        <i class="uil uil-dollar-alt"></i>
+                        <i class="uil uil-box"></i>
                     </div>
 
                     <div class="single-card">
@@ -193,6 +194,23 @@
         mainContent.classList.toggle('toggleContent');
     }
 
+
+//active de navegacion
+    document.addEventListener('DOMContentLoaded', function () {
+        var menuItems = document.querySelectorAll('.sidebar-menu ul li');
+
+        menuItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                // Elimina la clase 'active' de todos los elementos
+                menuItems.forEach(function (innerItem) {
+                    innerItem.classList.remove('active');
+                });
+
+                // Agrega la clase 'active' al elemento clicado
+                item.classList.add('active');
+            });
+        });
+    });
 
 </script>
 </body>
