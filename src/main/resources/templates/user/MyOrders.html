@@ -1,50 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head th:insert = "~{user/template_user::head}"></head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{user/template_user::head}"></head>
     <body>
         <!-- Navigation -->
-        <div th:insert ="~{user/template_user::header}" th:if="${id==null}"></div>
-        <div th:insert ="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
-        <h2>Detalles de la Compra</h2>
+        <div th:insert="~{user/template_user::header}" th:if="${id==null}"></div>
+        <div th:insert="~{user/template_user::userlogger}" th:unless="${id==null}"></div>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID del Producto</th>
-                    <th>Nombre del Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Total por Producto</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ejemplo de datos estáticos, reemplaza con tus datos dinámicos -->
-                <tr>
-                    <td>1</td>
-                    <td>Producto 1</td>
-                    <td>2</td>
-                    <td>$10.00</td>
-                    <td>$20.00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Producto 2</td>
-                    <td>1</td>
-                    <td>$15.00</td>
-                    <td>$15.00</td>
-                </tr>
-                <!-- Fin de datos estáticos -->
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4" style="text-align: right;"><strong>Total de la Orden:</strong></td>
-                    <td>$35.00</td>
-                </tr>
-            </tfoot>
-        </table>
+        <!-- Page Content -->
+        <div class="container" style="margin-top: 120px;">
+
+            <h1>Order Details</h1>
+
+            <p>User: <span th:text="${user.name}"></span></p>
+            <p>Order ID: <span th:text="${order.id}"></span></p>
+            <p>Date: <span th:text="${order.date}"></span></p>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterate over order products and display details -->
+                    <tr th:each="orderProduct : ${orderProducts}">
+                        <td th:text="${orderProduct.productEntity.name}"></td>
+                        <td th:text="${orderProduct.quantity}"></td>
+                        <td th:text="${orderProduct.productEntity.price}"></td>
+                        <td th:text="${orderProduct.getTotalPrice()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Total Order Price: <span th:text="${order.getTotalOrderPrice()}"></span></p>
 
 
-    </body>
-  <!-- Footer -->
+
+        </div>
+        <!-- /.container -->
+
+        <!-- Footer -->
         <div th:insert="~{user/template_user::footer}"></div>
+    </body>
 </html>

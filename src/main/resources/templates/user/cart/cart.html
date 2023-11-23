@@ -51,22 +51,22 @@
         </div>
         <!-- /.container -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script th:inline="javascript">
-    /*<![CDATA[*/
-    function removeItemConfirmation(event) {
-        event.preventDefault(); // Prevenir la acción predeterminada del enlace
+         <script th:inline="javascript">
+            /*<![CDATA[*/
+             function removeItemConfirmation(event) {
+             event.preventDefault(); // Prevenir la acción predeterminada del enlace
 
-        Swal.fire({
-            title: '¿Quitar producto?',
-            text: '¿Seguro que desea quitar el producto seleccionado del carrito?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, quitar',
-            cancelButtonText: 'No, cancelar',
-            allowOutsideClick: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
+                 Swal.fire({
+                 title: '¿Quitar producto?',
+                 text: '¿Seguro que desea quitar el producto seleccionado del carrito?',
+                 icon: 'question',
+                 showCancelButton: true,
+                 confirmButtonText: 'Sí, quitar',
+                 cancelButtonText: 'No, cancelar',
+                 allowOutsideClick: true,
+                }).then((result) => {
+                if (result.isConfirmed) {
+                 Swal.fire({
                     title: 'Producto eliminado',
                     icon: 'success'
                 }).then(() => {

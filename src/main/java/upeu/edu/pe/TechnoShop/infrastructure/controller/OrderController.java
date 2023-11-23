@@ -77,7 +77,7 @@ public class OrderController {
     }
 
     @GetMapping("/create-order")
-    public String createOrder(RedirectAttributes attributes, HttpSession httpSession) {
+    public String createOrder(Model model, RedirectAttributes attributes, HttpSession httpSession) {
         UserEntity user = userServices.findById(Integer.parseInt(httpSession.getAttribute("iduser").toString()));
         OrderEntity order = new OrderEntity();
         order.setDateCreated(LocalDateTime.now());
@@ -105,25 +105,49 @@ public class OrderController {
                     stockService.saveStock(validateStock.calculateBalance(stock));
                 }
         );
-       
+        // Agrega los orderProducts al modelo para pasarlos a la otra página
+        model.addAttribute("orderProducts", orderProduct);
 
+        // Añade cualquier otro atributo que desees pasar a la otra página
+        model.addAttribute("total", cartService.getTotalCart());
         attributes.addFlashAttribute("id", httpSession.getAttribute("iduser").toString());
         attributes.addFlashAttribute("nombre", httpSession.getAttribute("name").toString());
         return "redirect:/home";
     }
 
     //resumen de orden
-    @GetMapping("/{orderId}")
-    public String viewUserOrders(Model model, RedirectAttributes attributes, HttpSession httpSession) {
+    /*@GetMapping("/{orderId}")
+    public String viewUserOrderDetails(Model model, HttpSession httpSession) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        UserEntity user = userServices.findByEmail(username);
 
-        Iterable<OrderEntity> userOrders = orderService.getOrdersByUser(user);
+        // Verificar si el usuario está autenticado
+        if (auth != null && !auth.getName().equals("anonymousUser")) {
+            String username = auth.getName();
+            UserEntity user = userServices.findByEmail(username);
 
-        model.addAttribute("orders", userOrders);
-        attributes.addFlashAttribute("id", httpSession.getAttribute("iduser").toString());
-        attributes.addFlashAttribute("nombre", httpSession.getAttribute("name").toString());
-        return "user/MyOrders";
-    }
+            // Obtener todos los pedidos asociados al usuario
+            Iterable<OrderEntity> userOrders = orderService.getOrdersByUser(user);
+
+            // Verificar si hay al menos un pedido
+            if (userOrders.iterator().hasNext()) {
+                // Supongamos que seleccionamos el primer pedido de la lista
+                OrderEntity selectedOrder = userOrders.iterator().next();
+
+                model.addAttribute("order", selectedOrder);
+
+                // Convertir la colección de OrderProductEntity a una lista manejable por Thymeleaf
+                List<OrderProductEntity> orderProductsList = new ArrayList<>(selectedOrder.getOrderProducts());
+                model.addAttribute("orderProducts", orderProductsList);
+
+                model.addAttribute("user", user);
+                model.addAttribute("nombre", username);
+
+                return "user/OrderDetails";
+            }
+        }
+
+        // Redirigir a la página de inicio de sesión si el usuario no está autenticado o no tiene pedidos
+        return "redirect:/login";
+    }*/
+
 }

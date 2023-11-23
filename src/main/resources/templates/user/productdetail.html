@@ -40,7 +40,7 @@
                                         </h6></li>
                                 </ul>
                                 <div class="text-end mt-3">
-                                    <button type="submit" class="btn btn-primary" style="background-color: #004080; border-color: #004080;">Añadir al carrito</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #004080; border-color: #004080;" id="guardarBtn">Añadir al carrito</button>
                                 </div>
 
                             </form>
@@ -53,7 +53,16 @@
         <!-- /.container -->
         <!-- Asegúrate de que estás incluyendo SweetAlert2 en tu página -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+        <script>
+            document.getElementById("guardarBtn").addEventListener("click", function () {
+                // Puedes personalizar el mensaje y los estilos según tus necesidades
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Agregado!',
+                    text: 'El producto se ha agregado exitosamente.',
+                });
+            });
+        </script>
         <!-- Footer -->
         <div th:insert="~{user/template_user::footer}"></div>
 

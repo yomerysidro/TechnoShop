@@ -20,16 +20,29 @@
                 </div>
 
                 <div class="row">
-                    <button type="submit">
-                        Guardar
-                    </button>
+                    <button class="btn" type="submit" id="guardarBtn">Guardar</button>
                 </div>
             </form>
         </div>
         <!-- /.container -->
 
         <!-- Footer -->
-        <div th:insert="~{admin/template_admin::footer_admin}"></div>
+        <div th:insert="~{admin/templates_admin::footer_admin}"></div>
     </body>
-
+    <style>
+        .footer {
+            position: absolute;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById("guardarBtn").addEventListener("click", function () {
+            // Puedes personalizar el mensaje y los estilos según tus necesidades
+            Swal.fire({
+                icon: 'success',
+                title: '¡Guardado!',
+                text: 'El producto se ha guardado exitosamente.',
+            });
+        });
+    </script>
 </html>

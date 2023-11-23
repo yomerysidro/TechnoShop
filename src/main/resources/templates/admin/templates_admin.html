@@ -4,8 +4,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" th:href="@{images/Logo.png}">
         <title>TechnoShop - Admin</title>
-
-        <!-- iconscout cdn path -->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <!-- CSS File Link -->
         <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -14,8 +12,10 @@
         <div class="sidebar" id="sidebar" th:fragment ="header_admin">
             <div class="logo">
                 <h2>
-                    <i class="uil uil-yen-circle"></i>
-                    TechnoShop
+                    <a th:href="@{/admin}">
+                        <i class="uil uil-yen-circle"></i>
+                        TechnoShop
+                    </a>
                 </h2>
             </div>
 
@@ -183,7 +183,25 @@
 
 
 </div>
+<div th:fragment ="footer_admin">
+    <footer class="footer py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">TechnoShop Copyright &copy; Admin 2023</p>
+        </div>
+    </footer>
 
+    <style>
+        footer {
+            background: linear-gradient(to right, #0c87b1, #006eff);
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            bottom: 0px;
+            position: fixed;
+        }
+    </style>
+</div>
 <script>
     let sideBar = document.getElementById('sidebar');
     let menuIcon = document.getElementById('menu-icon');

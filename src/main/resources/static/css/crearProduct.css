@@ -1,69 +1,75 @@
 body {
-            font-family: Arial, sans-serif;
-            background-color: #fff;
-            margin: 0;
-            padding: 0;
-        }
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
 
-        .title {
-            color: #007bff;
-        }
+.title {
+    color: #007bff;
+}
 
-        .form-horizontal {
-            display: flex;
-            flex-direction: column;
-        }
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .control-label {
-            margin-bottom: 5px;
-            color: #007bff;
-        }
+.control-label {
+    margin-bottom: 5px;
+    color: #007bff;
+}
 
-        .form-control {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+.form-control {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-        textarea {
-            height: 100px;
-        }
+textarea {
+    height: 100px;
+}
 
-        .form-control-file {
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+.form-control-file {
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-        .row {
-            margin-top: 15px;
-            display: flex;
-            justify-content: flex-end;
-        }
+.row {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+button {
+    border: none;
+    color: black;
+    padding: 14px 28px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -50px;
+    margin-bottom: 120px;
+}
 
-        button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.btn{
+    background-color: white;
+    border: 2px solid #007bff;
+    transition: background-color 0.3s ease;
+}
 
-        button:hover {
-            background-color: #218838;
-        }
+.btn:hover {
+    background: #0b7dda;
+    color: white;
+}

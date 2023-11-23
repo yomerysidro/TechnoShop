@@ -59,7 +59,7 @@
 
                             <ul class="list-group">
                                 <li class="list-group-item"><h5 th:text="${total}"> Total:</h5></li>
-                                <a th:href="@{/user/order/create-order}" class="btn btn-dark">Generar</a>
+                                <a th:href="@{/user/order/create-order}" class="btn btn-dark"id="guardarBtn">Generar</a>
                             </ul>
                         </div>
                     </div>
@@ -70,6 +70,16 @@
 
         <!-- Footer -->
         <div th:insert="~{user/template_user::footer}"></div>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            document.getElementById("guardarBtn").addEventListener("click", function () {
+                // Puedes personalizar el mensaje y los estilos según tus necesidades
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Agregado!',
+                    text: 'El producto se ha agregado exitosamente.',
+                });
+            });
+        </script>
     </body>
 </html>
