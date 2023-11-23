@@ -29,7 +29,6 @@ import upeu.edu.pe.TechnoShop.infrastructure.entity.UserEntity;
 @RequestMapping("/register")
 public class RegisterController {
 
-    
     private JavaMailSender javaMailSender;
     private final RegistrationService registrationService;
     private final Logger log = LoggerFactory.getLogger(RegisterController.class);
@@ -38,8 +37,6 @@ public class RegisterController {
         this.javaMailSender = javaMailSender;
         this.registrationService = registrationService;
     }
-
-   
 
     @GetMapping
     public String register(UserDto userDto, Model model) {
@@ -57,7 +54,6 @@ public class RegisterController {
 //        user.setDateCreated(LocalDateTime.now());
 //        user.setUserType(UserType.USER);
 //        user.setUsername(user.getEmail());
-
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(
                     e -> {
@@ -66,8 +62,7 @@ public class RegisterController {
             );
             return "register";
         }
-
-      UserEntity registeredUser = registrationService.register(userDto.userDtoToUser());
+        UserEntity registeredUser = registrationService.register(userDto.userDtoToUser());
         // Envía el correo de registro exitoso
         enviarEmail(registeredUser.getEmail());
         redirectAttributes.addFlashAttribute("success", "Usuario creado correctamente. Se ha enviado un correo de confirmación.");
